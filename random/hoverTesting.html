@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Input Field Example</title>
+	<style>
+.square {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+  transform-origin: bottom right;
+}
+
+/* Define the six faces of the cube */
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  border: 1px solid white;
+  box-sizing: border-box;
+}
+
+.front {
+  transform: translateZ(50px);
+}
+
+.back {
+  transform: translateZ(-50px);
+}
+
+.top {
+  transform: rotateX(-90deg) translateZ(-50px);
+}
+
+.bottom {
+  transform: rotateX(90deg) translateZ(-50px);
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(-50px);
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(-50px);
+}
+
+/* Define the hover effect */
+.square:hover {
+  transform: rotateX(15deg) rotateY(15deg);
+}
+
+	</style>
+</head>
+<body>
+    <div class="square">
+      
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+        <div class="face left"></div>
+        <div class="face right"></div> 
+         <input value=" " type="file" id="file-input-1" accept="image/*">
+      </div>
+      
+  
+	<script src=""></script>
+</body>
+</html>

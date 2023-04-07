@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Animation</title>
+    <style>
+#music-box {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+}
+
+    </style>
+</head>
+<body>
+    <div id="music-box"></div>
+
+      
+    <script>
+   const musicBox = document.getElementById('music-box');
+ 
+const spotifyPlayer = new Spotify.Player({
+  name: 'Fantasy Ambience Player',
+  getOAuthToken: callback => {
+    // Replace YOUR_CLIENT_ID and YOUR_CLIENT_SECRET with your own values
+    fetch('https://accounts.spotify.com/api/token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Basic ' + btoa('0ca1f1cd7fc14bacb0fd314d9113a31d:6810e2fe15514e858abe0b56ea90fbf7')
+      },
+      body: 'grant_type=client_credentials'
+    })
+      .then(response => response.json())
+      .then(data => {
+        const accessToken = data.access_token;
+        callback(accessToken);
+      });
+  }
+});
+
+// ...rest of the code follows here
+
+
+let isPlaying = false;
+let currentColor = '#ccc';
+let currentTrack = null;
+
+function playFantasyAmbience() {
+  // Search for a playlist or track that fits the fantasy ambience genre
+  spotifyPlayer.search('Fantasy Ambience', ['playlist', 'track']).then(response => {
+    const items = response.tracks.items;
+    const track = items[Math.floor(Math.random() * items.length)];
+    currentTrack = track.uri;
+    spotifyPlayer.play(currentTrack);
+    isPlaying = true;
+    currentColor = '#f00';
+    musicBox.style.backgroundColor = currentColor;
+  });
+}
+
+spotifyPlayer.addListener('player_state_changed', state => {
+  // Check if the currently playing track has finished
+  if (state.paused && state.position === 0 && currentTrack !== null) {
+    // If so, play another track from the fantasy ambience genre
+    playFantasyAmbience();
+  }
+});
+
+musicBox.addEventListener('click', () => {
+  if (!isPlaying) {
+    playFantasyAmbience();
+  } else {
+    spotifyPlayer.pause();
+    isPlaying = false;
+    currentColor = '#ccc';
+    musicBox.style.backgroundColor = currentColor;
+  }
+});
+
+musicBox.addEventListener('wheel', event => {
+  // Search for another track or playlist that fits the fantasy ambience genre
+  spotifyPlayer.pause();
+  playFantasyAmbience();
+});
+
+    </script>
+</body>
+</html>

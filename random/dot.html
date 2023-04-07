@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Input Field Example</title>
+	<style>
+.cube {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+}
+
+.face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: transparent;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  transition: all 0.5s ease-in-out;
+}
+
+.face-front {
+  transform: translateZ(100px);
+}
+
+.face-back {
+  transform: translateZ(-100px);
+}
+
+.face-right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.face-left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+.face-top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.face-bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
+.square {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  background-color: #000;
+  transition: all 0.5s ease-in-out;
+}
+
+.cube:hover .face {
+  border-color: #fff;
+}
+
+.cube:hover .square {
+  transform: translateZ(-50px) scale(0.8);
+  box-shadow: 0 0 0 4px #000, 0
+}
+
+	</style>
+</head>
+<body>
+  <div class="cube">
+    <div class="face face-front"></div>
+    <div class="face face-back"></div>
+    <div class="face face-right"></div>
+    <div class="face face-left"></div>
+    <div class="face face-top"></div>
+    <div class="face face-bottom"></div>
+    <div class="square"></div>
+  </div>
+  
+	<script src="dot.js"></script>
+</body>
+</html>

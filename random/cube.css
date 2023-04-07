@@ -1,0 +1,22 @@
+#cube {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    position: relative;
+    margin: 100px auto;
+    transform-style: preserve-3d;
+    border: 2px solid gray;
+    animation: rotate 5s linear infinite;
+    cursor: pointer;
+  }
+  
+  #cube:hover {
+    transform: scale(1.1);
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+    100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+  }
+  
+  

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Saved Cards</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+<style> 
+#cards {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(32, 32, 32);
+    border: 2px solid black;
+    flex-flow: wrap;
+
+}
+.card {
+    height: 100%;
+    padding-top: 5px ;
+    margin-top: 15px;
+}
+#card { 
+ 
+    border: solid black 5px;
+
+   
+    
+    }
+    .option4 {
+        border: solid white 1px;
+    background-color: rgb(224, 124, 31);
+    font-size: 1em;
+    font-weight: 900;
+    color: white;
+    padding: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    text-decoration: none;
+    }
+    .backArt {
+   
+    }
+    .button {
+  background: #3D4C53;
+  margin : 20px auto;
+  width : 200px;
+  height : 50px;
+  overflow: hidden;
+  text-align : center;
+  transition : .2s;
+  cursor : pointer;
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+}
+.btnTwo {
+  position : relative;
+  width : 200px;
+  height : 100px;
+  margin-top: -88px;
+  padding-top: 2px;
+  background : #7a0000;
+  left : -250px;
+  transition : .3s;
+}
+.btnText {
+  color : white;
+  transition : .3s;
+}
+.btnText2 {
+  margin-top : 63px;
+  margin-right : -130px;
+  color : #FFF;
+}
+.button:hover .btnTwo{ /*When hovering over .button change .btnTwo*/
+  left: -130px;
+}
+.button:hover .btnText{ /*When hovering over .button change .btnText*/
+  margin-left : 65px;
+}
+.button:active { /*Clicked and held*/
+  box-shadow: 0px 5px 6px rgba(0,0,0,0.3);
+}
+
+a span:nth-child(1) {
+  color: #fff;
+  background: #ff3636;
+}
+a span:nth-child(2) {
+  color: #fff;
+  background: #262626;
+}
+a span:nth-child(1):before {
+
+  background: #262626;
+
+}
+
+a span:nth-child(2):before {
+  background: #ff3636;
+}
+
+a span:nth-child(1):after {
+
+  background: #ff3636;
+
+}
+
+a span:nth-child(2):after {
+ 
+  background: #262626;
+
+}
+
+
+</style>
+  </head>
+  <body>
+    <video autoplay muted loop id="myVideo">
+        <source src="road-to-castle-moewalls.com.mp4" type="video/mp4">
+      </video>
+    <div class="navNest"> <nav>
+        <img src="DPORTLOGO.png" class="navIcon">
+        <div class="navOption"> 
+        <a class="option1">About</a>
+        <a href="index.html"><span data-attr1="+GNRTR+"data-attr2="+Cards+">WWWWW</span></a>        <a class="option3">MORE!</a>
+        </div></div>
+    <div id="cards"></div>
+
+    <script src="index.js"></script>
+    <script>
+  const cardsDiv = document.querySelector('#cards');
+const cards = JSON.parse(localStorage.getItem('cards'));
+
+if (cards) {
+  for (let i = 0; i < cards.length; i++) {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'card';
+    // cardsDiv.style.gap = '15px';
+    cardDiv.innerHTML = cards[i].html;
+    cardDiv.style.backgroundImage = cards[i].bgImage;
+
+    // const editLink = document.createElement('a');
+    // editLink.href = 'index.html';
+    // editLink.textContent = 'Edit';
+    // editLink.onclick = () => {
+    //   localStorage.setItem('editCard', JSON.stringify(cards[i]));
+    //   window.location.href = `index.html?card=${encodeURIComponent(JSON.stringify(cards[i]))}`;
+    // };
+    // cardDiv.appendChild(editLink);
+
+    const deleteButton = document.createElement('div');
+    const deleteP1 = document.createElement('p');
+    const deleteP2 = document.createElement('p')
+    const deleteSpan = document.createElement('div');
+    deleteP1.textContent = 'Delete';
+    deleteP2.textContent = 'X';
+    deleteButton.className = 'button';
+    deleteSpan.className = 'btnTwo';
+    deleteP1.className = 'btnText';
+    deleteP2.className = 'btnText2';
+    
+    deleteButton.onclick = () => {
+      cards.splice(i, 1);
+      localStorage.setItem('cards', JSON.stringify(cards));
+      cardsDiv.removeChild(cardDiv);
+    };
+   
+deleteButton.appendChild(deleteP1);
+deleteButton.appendChild(deleteSpan);
+deleteSpan.appendChild(deleteP2)
+cardDiv.appendChild(deleteButton);
+
+
+    cardsDiv.appendChild(cardDiv);
+  }
+}
+
+
+
+
+    </script>
+  </body>
+</html>
