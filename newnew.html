@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+</head>
+<body>
+  <div id="popup" style="display: none; position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+    <p class="popupText"> Upload successful!!</p>
+    <img id="upload-gif" src="" style="width: 100px; height: 100px;" />
+</div>
+     <div class="mamaNest">
+    <div class="leftNest">
+        <div class="header">
+            <!-- <img class="headerImage" src="cardwizard.png"></img> -->
+            <p class="headerText"> Card Wizard</p>
+            <div class="headerNav">
+                <a id="navItem1" href="newnew2.html"> About </a>
+                <a id="navItem2" href="new.html"> Cards </a>
+                <div id="navItem3"> Swap </div>
+
+            </div>
+        </div>
+        <div class="miniBox">
+            <div class="artHolder"> <div class="nest">
+                <div id="tools">
+                    <button id="pencil" class="material-icons">draw</button>
+               
+                    <button id="eraser" class="material-icons">edit_off</button>
+                    <button id="fill" class="material-icons"><span class="material-icons-two-tone">
+                        format_color_fill
+                        </span></button>
+                    <input type="color" id="pencilColorPicker" value="#000000">
+                    <input type="color" id="fillColorPicker" value="#ffffff">
+                    <input type="range" id="brushSize" min="1" max="50" value="10">
+                    <button id="undo" class="material-icons">undo</button>
+                    <button id="redo" class="material-icons">redo</button>
+                    <button id="rectangle" class="material-icons">square</button>
+                    <button id="circle" class="material-icons">circle</button>
+                
+                    <button id="html-to-canvas" class="material-icons">format_size</button>
+                        <button id="toggle-layer0" class="material-icons">visibility</button>
+                        <button id="move-up0" class="material-icons">expand_less</button>
+                        <button id="move-down0" class="material-icons">expand_more</button>
+                        <button id="new-layer" class="material-icons">add</button>
+                        <button id="delete-layer" class="material-icons">remove</button>
+                        <button id="save" class="material-icons">save</button>
+            
+                        <div id="layers"></div>
+                </div>
+                <div id="canvas-container">
+                    <canvas id="layer0"></canvas>
+                </div>
+                </div></div>
+        </div>
+    </div>
+    <div class="rightNest">
+        <div class="megaBox">
+            <div class='leftestNest'>   
+                <div class="mainOptions">
+                <p class="optionText">Name Color</p>
+                <input type="color" onchange="document.querySelector('.name').style.backgroundColor = this.value; document.querySelector('#name-style').style.backgroundColor = this.value;" class="colorPicker">
+            </div>
+            <div class="mainOptions imgopt">
+             <p class="optionText" id="mainImage"> Main Image </p>
+            
+               <input value=" " type="file" id="file-input-1" accept="image/*">
+            </div>
+            <div class="mainOptions imopt">
+                <p class="optionText" id="backImage"> Back Image </p>
+           
+               <input value=" " type="file" id="file-input-2" accept="image/*">
+            </div>
+            <div class="mainOptions">
+                <p class="optionText">Card Type Color</p>
+
+                 <input type="color" onchange="document.querySelector('#card-name').style.backgroundColor = this.value ; document.querySelector('#card-container').style.backgroundColor = this.value; "class="colorPicker">
+            </div>
+            <div class="mainOptions">
+                <p class="optionText">Description Color</p>
+
+                <input type="color" onchange="document.querySelector('.description').style.backgroundColor = this.value; document.querySelector('#description-style').style.backgroundColor = this.value;"class="colorPicker">
+            </div>   
+            <div class="mainOptions">
+                <p class="optionText triangle" onclick="showDropdown('dropdown2')">drowdown</p>
+
+                    <div  id="dropdown2" class="dropdown-content">
+                      <a href="#" onclick="setFont2('Arial')">Arial</a>
+                      <a href="#" onclick="setFont2('Times New Roman')">Times New Roman</a>
+                      <a href="#" onclick="setFont2('Courier New')">Courier New</a>
+                    </div>
+                  </div>
+                  <div class="mainOptions">
+                    <p  id='tri2' class="optionText triangle" onclick="showDropdown('dropdown3','description-box')">drowdown</p>
+
+                    <div id="dropdown3" class="dropdown-content">
+                      <a href="#" onclick="setFont3('Arial')">Arial</a>
+                      <a href="#" onclick="setFont3('Times New Roman')">Times New Roman</a>
+                      <a href="#" onclick="setFont3('Courier New')">Courier New</a>
+                    </div>
+                  </div>
+                <div class="mainOptions">
+                    <p id='tri3' class="optionText triangle" onclick="showDropdown('dropdown1')">drowdown</p>
+
+                    <div id="dropdown1" class="dropdown-content">
+                      <a href="#" onclick="setFont1('Arial')">Arial</a>
+                      <a href="#" onclick="setFont1('Times New Roman')">Times New Roman</a>
+                      <a href="#" onclick="setFont1('Courier New')">Courier New</a>
+                    </div>
+                  </div>
+         
+        </div> 
+             
+       <form class="card">
+            <div class="topInfo"> 
+            <input class="name" type="text" id="name-box" onkeydown="if(event.keyCode==13) {showInputText()}">
+            <div id="name-style" onclick="editInputText()"></div>
+            <div class="ddmMana">
+                <button id="image-button" type="button"> 
+                    <i class="image-icon" ></i>
+                </button>
+                <ul id="image-list">
+                  <li data-image="Crystal.png" class="mana1" style="background-image: url('Crystal.png');" src="Crystal.png"></li>
+    <li data-image="Diabless.png" class="mana2" style="background-image: url('Diabless.png');" src="Diabless.png"></li>
+    <li data-image="Ethereal.png" class="mana3" style="background-image: url('Ethereal.png');" src="Ethereal.png"></li>
+                </ul>
+              </div>
+               <input class="manaCost"> </div>
+           
+                <div class="mainArt"> </div>
+                <!-- <input class="type" id="type-box" onkeydown="if(event.keyCode==13) {showInputText2()}">
+                <div id="type-style" onclick="editInputText2()"></div> -->
+                <div id='div1'>
+                  <input type="text" id="card-name" onclick="showOptions()" placeholder="Select card type">
+                  
+                </div>
+               
+                <div id="options" style="display:none">
+                  <ul>
+                    <li onclick="setOption('Creature')">Creature</li>
+                    <li onclick="setOption('Enchantment')">Enchantment</li>
+                    <li onclick="setOption('Artifact')">Artifact</li>
+                    <li onclick="setOption('Prayer')">Prayer</li>
+                  </ul>
+                </div>
+                
+                <div id="card-container" style="display: none;"></div>
+                <div id='creatureDiv' style="display: none; flex-direction: row; align-items: flex-end; height: 30px; width: 400px; justify-content: flex-end;" > 
+                 <input type="text" id="creature-power" style="display:none" placeholder="Power">
+                 <p id='creatureP' style="font-weight: 900; display: none;"> |</p>
+                  <input type="text" id="creature-toughness" style="display:none" placeholder="Toughness"></div>
+                
+            <input class="description" id="description-box" onkeydown="if(event.keyCode==13) {showInputText3()}">
+            <div id="description-style" onclick="editInputText3()"></div>
+       </form>  
+      
+        <div class="bottomNest"> 
+            <div class="textNest"> 
+      <span class="typing-text" id="typingText"></span>
+           <span class="typing-text2" id="typingText2"></span></div>
+     <div class="buttons">   
+      
+        <ico class="btn-upload" id="btn-upload"><n></n></ico>
+        <ico class="btn-download"><n></n></ico>
+     </div></div>
+     </div>
+    
+        </div>
+    </div></div>
+    <script src="script.js"></script>
+</body>
+</html>

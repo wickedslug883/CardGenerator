@@ -553,7 +553,7 @@ ico {
 padding-right: 25px;
   height: 500px; 
 }
-.leftNest {
+.left {
     display: flex;
     flex-direction: column ;
 justify-content: space-between;
@@ -569,7 +569,7 @@ padding-top: 250px ;
 height: 500px; 
 
 }
-.rightNest {
+.right {
     display: flex;
     flex-direction: column ;
 justify-content: space-evenly;
@@ -669,14 +669,14 @@ background-color: lightgray;
     height: 100px;
     flex-direction: column-reverse;
   }
-  .leftNest {
+  .left {
     height: auto;
     align-items: flex-end;
     flex-direction: row;
     width: 300px;
     justify-content: space-evenly;
   }
-  .rightNest {
+  .right {
     flex-direction: row-reverse;
     height: auto;
     padding-top: 0;
@@ -717,14 +717,14 @@ background-color: lightgray;
     height: 100px;
     flex-direction: column-reverse;
   }
-  .leftNest {
+  .left {
     height: auto;
     align-items: flex-end;
     flex-direction: row;
     width: 300px;
     justify-content: space-evenly;
   }
-  .rightNest {
+  .right {
     flex-direction: row-reverse;
     height: auto;
     padding-top: 0;

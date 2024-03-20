@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link  rel="stylesheet" href="style.css">
+    <link  rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" >
+    <style> 
+    #gameCanvas {
+        height: 100%;
+    }
+    </style>
+</head>
+<body>
+     <div class="mamaNest">
+    <div class="leftNest">
+        <div class="header">
+            <p class="headerText"> Card Wizard</p>
+            <div class="headerNav">
+                <a id="navItem1" href="newnew.html"> Create </a>
+                <a id="navItem2" href="new.html"> About </a>
+                <div>  </div>
+
+            </div>
+        </div>
+        <div class="miniBox">
+            <canvas id="gameCanvas"></canvas>
+
+        </div>
+    </div>
+    <div class="rightNest">
+        <div class="megaBox">
+            <div class="kinOne">
+                <p class="koText">
+                I created this to further my step towards my goal. This will eventually become its own application in where I will be able to seed Card Data and its corresponding Images Data into the Card Database. This Database will be utlizied to provide content (cards to use in battle) for a Player vs Player Card Game.
+                </p>
+                    <div class="ktwImageTro" id="ktwImageTro">
+                    <div class="ktwTro tro_one"> </div>
+                    <div class="ktwTro tro_two" id="tro_img_two"> </div>
+            </div>
+            </div>
+            <div class="kinTwo">
+                <div class="ktwImageBox" id="ktwImageBox">
+                <div class="ktwImage box_one"> </div>
+                <div class="ktwImage box_two" id="box_img_two"> </div>
+            </div>
+                <div class="ktwBox"> 
+                    <h2 class="ktwTitle"> Check Out My Socials </h2>
+                <div class="ktwCardHolder"> 
+                    <div class="ktwCard" id="card1">
+                        <div class="cardTop">
+                        <div class="numberOneA">
+                            <p class="numberText"> 1 </p>
+                        </div>
+                        <i class="fa-regular fa-star"></i>
+
+                    </div>
+                        <div class="circle-outline" id="circOut1">
+                            <div class="circle" id="circle1"></div>
+                            <i class="fa-brands fa-github-alt"></i>
+                            <div class="text">github</div>
+                          </div> 
+                          <div class="cardBottom">
+                            <i class="fa-regular fa-star"></i>
+
+                          <div class="numberOneB">
+                           
+                            <p class="numberText"> 1 </p>
+                        </div>
+                          </div>
+                          
+                    </div>
+                    <div class="ktwCard" id="card2">
+                        <div class="cardTop" >
+
+                        <div class="numberTwoA">
+                            <p class="numberText"> 2 </p>
+                        </div>
+                        <i class="fa-regular fa-moon"></i>
+
+                    </div>
+                        <div class="circle-outline" id="circOut2">
+                            <div class="circle" id="circle2"></div>
+                            <i class="fa-brands fa-linkedin"></i>
+                            <div class="text">linkedin</div>
+                          </div>
+                          <div class="cardBottom">
+                            <i class="fa-regular fa-moon"></i>
+
+                          <div class="numberTwoB">
+                            <p class="numberText"> 2 </p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="ktwCard" id="card3">
+                        <div class="cardTop"> 
+                           
+                        <div class="numberThreeA">
+                            <p class="numberText"> 3 </p>
+                        </div>
+                         <i class="fa-regular fa-heart"></i>
+                    </div>
+                        <div class="circle-outline" id="circOut3">
+                            <div class="circle" id="circle3"></div>
+                            <i class="fa-brands fa-youtube"></i>
+                            <div class="text">youtube</div>
+                          </div>
+                          <div class="cardBottom"> 
+                            <i class="fa-regular fa-heart"></i>
+                            <div class="numberThreeB">
+                        <p class="numberText"> 3 </p>
+                    </div>
+                </div>
+                    </div>
+                  
+                    </div>
+                    <p class="koTextMid">
+                        I created this to further my step towards my goal. This will eventually become its own application in where I will be able to seed Card Data and its corresponding Images Data into the Card Database. This Database will be utlizied to provide content (cards to use in battle) for a Player vs Player Card Game.
+                        </p>
+                    <i class="fa-regular fa-arrow-down"></i>
+                </div>
+            </div>
+        </div>
+    </div></div>
+    <button id="invertBtn">Invert</button>
+
+<script>
+    var scaleX = 1;
+var scaleY = 1;
+
+    var canvas = document.getElementById('gameCanvas');
+var context = canvas.getContext('2d');
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var miniBox = document.querySelector('.miniBox');
+    scaleX = canvas.width / miniBox.offsetWidth;
+    scaleY = canvas.height / miniBox.offsetHeight;
+}
+
+window.addEventListener('resize', resizeCanvas, false);
+resizeCanvas();
+
+var circles = [];
+
+// Circle object
+function Circle(x, y, radius, dx, dy) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.dx = dx;
+    this.dy = dy;
+    this.isDragging = false;
+    this.isSquare = false; // Add this line
+
+    // Detects collision with other circles
+    this.detectCollision = function(other) {
+        var dx = other.x - this.x;
+        var dy = other.y - this.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        return distance < (this.radius + other.radius);
+    }
+
+    this.update = function() {
+    if (!this.isDragging) {
+        var drag = 0.99; // Change this to adjust the amount of drag
+
+        // Apply drag
+        this.dx *= drag;
+        this.dy *= drag;
+
+        if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+            this.dx = -this.dx;
+        }
+        if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+            this.dy = -this.dy;
+        }
+        this.x += this.dx;
+        this.y += this.dy;
+    }
+
+    circles.forEach(otherCircle => {
+        if (this !== otherCircle && this.detectCollision(otherCircle)) {
+            // Calculate the vector between the circle centers
+            var dx = otherCircle.x - this.x;
+            var dy = otherCircle.y - this.y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Calculate the overlap (how much one circle penetrates the other)
+            var overlap = (this.radius + otherCircle.radius) - distance;
+
+            // Normalize the vector
+            var nx = dx / distance;
+            var ny = dy / distance;
+
+            // Apply the repulsion force (proportional to the overlap)
+            var repulsionStrength = 0.0002; // Change this value to adjust the strength of the repulsion
+            this.dx -= overlap * nx * repulsionStrength;
+            this.dy -= overlap * ny * repulsionStrength;
+            otherCircle.dx += overlap * nx * repulsionStrength;
+            otherCircle.dy += overlap * ny * repulsionStrength;
+        }
+    });
+}
+
+
+    // Draws the circle
+    this.draw = function() {
+        context.beginPath();
+        if (this.isSquare) {
+            // Draw a square
+            context.rect(this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
+        } else {
+            // Draw a circle
+            context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+        }
+        context.fill();
+    }
+}
+var activeSquare = null; // Add this line
+var dragStarted = false;  // Add this line
+
+// Create circles
+for (var i = 0; i < 4; i++) {
+    var radius = 250;
+    var x = Math.random() * (canvas.width - 2 * radius) + radius;
+    var y = Math.random() * (canvas.height - 2 * radius) + radius;
+    var dx = (Math.random() - 0.5) * 2;
+    var dy = (Math.random() - 0.5) * 2;
+    circles.push(new Circle(x, y, radius, dx, dy));
+}
+
+// Update and draw circles
+function animate() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    circles.forEach(circle => {
+        circle.update();
+        circle.draw();
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+
+
+// Drag and drop
+canvas.addEventListener('mousedown', function(e) {
+    var miniBoxRect = canvas.getBoundingClientRect();
+    var mouseOnCircle = false;
+
+    circles.forEach(circle => {
+        var dx = (e.clientX - miniBoxRect.left) * scaleX - circle.x;
+        var dy = (e.clientY - miniBoxRect.top) * scaleY - circle.y;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < circle.radius) {
+            circle.isDragging = true;
+            mouseOnCircle = true;
+            dragStarted = true;
+        }
+    });
+
+    if (!mouseOnCircle && activeSquare) {
+        // Make the previously active square a circle again
+        activeSquare.isSquare = false;
+        activeSquare = null;
+    }
+});
+
+var mouse = {
+    x: 0,
+    y: 0,
+    px: 0, // previous x position
+    py: 0, // previous y position
+    speedX: 0, // x speed
+    speedY: 0, // y speed
+    updateTime: Date.now()
+}
+
+
+canvas.addEventListener('mousemove', function(e) {
+    var miniBoxRect = canvas.getBoundingClientRect();
+    var now = Date.now();
+    var dt = now - mouse.updateTime;
+
+    mouse.speedX = ((e.clientX - miniBoxRect.left) * scaleX - mouse.px) / dt;
+    mouse.speedY = ((e.clientY - miniBoxRect.top) * scaleY - mouse.py) / dt;
+
+    mouse.px = mouse.x;
+    mouse.py = mouse.y;
+    mouse.x = (e.clientX - miniBoxRect.left) * scaleX;
+    mouse.y = (e.clientY - miniBoxRect.top) * scaleY;
+    // Update time
+    mouse.updateTime = now;
+
+    circles.forEach(circle => {
+        if (circle.isDragging) {
+            var previousX = circle.x;
+            var previousY = circle.y;
+
+            circle.x = e.clientX;
+            circle.y = e.clientY;
+
+            circles.forEach(otherCircle => {
+                if (circle !== otherCircle && circle.detectCollision(otherCircle)) {
+                    circle.x = previousX;
+                    circle.y = previousY;
+                }
+            });
+        }
+    });
+});
+
+canvas.addEventListener('mouseup', function(e) {
+    circles.forEach(circle => {
+        if (circle.isDragging) {
+            circle.isDragging = false;
+            dragStarted = false;  // Add this line
+
+            if (!circle.isSquare && !activeSquare) {
+                // Change the shape of the circle
+                circle.isSquare = true;
+                // Make this the active square
+                activeSquare = circle;
+            } else if (circle.isSquare) {
+                // Change the shape of the square back to a circle
+                circle.isSquare = false;
+                activeSquare = null;
+            }
+            
+            // Apply mouse speed to circle (convert from pixels per millisecond to pixels per frame)
+            var speedMultiplier = 0.03; // reduce speed by 50%
+            circle.dx = mouse.speedX * 16.67 * speedMultiplier; // assuming 60 FPS
+            circle.dy = mouse.speedY * 16.67 * speedMultiplier; // assuming 60 FPS
+        }
+    });
+});
+
+</script>
+  <script src="about.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>

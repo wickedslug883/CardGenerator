@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DALL·E Mini</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 8px 16px;
+    }
+    img {
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>DALL·E Mini</h1>
+  <label for="text-input">What should I create?</label>
+  <input id="text-input" type="text" placeholder="Enter your description" />
+  <label for="num-images-input">How many images?</label>
+  <input id="num-images-input" type="number" min="1" max="6" value="1" />
+  <button id="go-button">GO!</button>
+  <div id="image-container"></div>
+
+  <script src="dalle.js"></script>
+</body>
+</html>

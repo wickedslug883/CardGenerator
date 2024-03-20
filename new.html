@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    #cards {
+        display: flex;
+        justify-content: space-evenly;
+        background-color: rgba(32, 32, 32, 0);
+        border: 2px solid black;
+        flex-flow: wrap;
+        /* background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/9a/512x512_Dissolve_Noise_Texture.png");
+        background-size: 256px; */
+    }
+
+    .card {
+        height: 100%;
+        padding-top: 5px;
+        margin-top: 15px;
+    }
+
+    #card {
+        border: solid black 5px;
+    }
+
+    .option4 {
+        border: solid white 1px;
+        background-color: rgb(224, 124, 31);
+        font-size: 1em;
+        font-weight: 900;
+        color: white;
+        padding: 5px;
+        margin-left: 2px;
+        margin-right: 2px;
+        text-decoration: none;
+    }
+
+    .backArt {}
+
+    .button {
+        background: #3D4C53;
+        margin: 20px auto;
+        width: 200px;
+        height: 50px;
+        overflow: hidden;
+        text-align: center;
+        transition: .2s;
+        cursor: pointer;
+        border-radius: 3px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, .2);
+    }
+
+    .btnTwo {
+        position: relative;
+        width: 200px;
+        height: 100px;
+        margin-top: -88px;
+        padding-top: 2px;
+        background: #7a0000;
+        left: -250px;
+        transition: .3s;
+    }
+
+    .btnText {
+        color: white;
+        transition: .3s;
+    }
+
+    .btnText2 {
+        margin-top: 63px;
+        margin-right: -130px;
+        color: #FFF;
+    }
+
+    .button:hover .btnTwo {
+        /*When hovering over .button change .btnTwo*/
+        left: -130px;
+    }
+
+    .button:hover .btnText {
+        /*When hovering over .button change .btnText*/
+        margin-left: 65px;
+    }
+
+    .button:active {
+        /*Clicked and held*/
+        box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    a span:nth-child(1) {
+        color: #fff;
+        background: #ff3636;
+    }
+
+    a span:nth-child(2) {
+        color: #fff;
+        background: #262626;
+    }
+
+    a span:nth-child(1):before {
+        background: #262626;
+    }
+
+    a span:nth-child(2):before {
+        background: #ff3636;
+    }
+
+    a span:nth-child(1):after {
+        background: #ff3636;
+    }
+
+    a span:nth-child(2):after {
+        background: #262626;
+    }
+
+    .megaBox {
+        overflow-y: scroll;
+    }
+
+    .noise {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/9a/512x512_Dissolve_Noise_Texture.png");
+        background-size: 256px;
+        opacity: 0.14;
+        object-fit: cover;
+        /* Ensures the image covers the entire space without distortion */
+    }
+
+    .megaBox {
+        position: relative;
+    }
+    
+#container {
+  position: relative;
+}
+
+span {
+  font-size: xx-large;
+  font-weight: 800;
+  position: absolute;
+  user-select: none;
+  opacity: 0;
+  transform: translateY(100px);  /* start from 100px below the final position */
+  animation: slideIn 1s forwards;  /* use slideIn animation */
+}
+.testDiv {
+  position: relative;
+}
+.noCards {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  overflow: hidden;
+}
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="mamaNest">
+    <div class="leftNest">
+        <div class="header">
+            <p class="headerText"> Card Wizard</p>
+            <div class="headerNav">
+                <a id='navItem1'href="newnew.html"> Create </a>
+                <a href="newnew2.html"> About </a>
+                <div> </div>
+            </div>
+        </div>
+        <div class="miniBox">
+        </div>
+    </div>
+    <div class="rightNest">
+        <div class="megaBox">
+          <div class="noCards"></div>
+            <div id="cards"></div>
+        
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+<script>
+  const cardsDiv = document.querySelector('#cards');
+    const cards = JSON.parse(localStorage.getItem('cards'));
+
+    const text = 'no cards to be found';
+    const letters = Array.from(text).map(c => {
+        const span = document.createElement('span');
+        span.textContent = c;
+        return {
+            span,
+            vx: 0,  // x velocity
+            vy: 0,  // y velocity
+        };
+    });
+
+    const sensitivity = 100;  // pixels
+    const drag = 0.95;  // momentum drag factor, should be less than 1
+
+    letters.forEach((letter, index) => {
+        letter.span.style.position = 'absolute';
+        letter.span.style.left = `${index * 30}px`;  // 30 can be adjusted
+        letter.span.style.top = '0px';
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        letters.forEach(letter => {
+            const rect = letter.span.getBoundingClientRect();
+            const dx = e.clientX - (rect.left + rect.width / 2);
+            const dy = e.clientY - (rect.top + rect.height / 2);
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < sensitivity) {
+                const angle = Math.atan2(dy, dx);
+                const force = 10 / distance;  // the closer the mouse is, the stronger the force
+                const ax = Math.cos(angle) * force;  // x acceleration
+                const ay = Math.sin(angle) * force;  // y acceleration
+
+                letter.vx -= ax;  // apply acceleration to velocity
+                letter.vy -= ay;  // apply acceleration to velocity
+            }
+        });
+    });
+
+    setInterval(() => {
+        // Move letters according to their velocities
+        letters.forEach(letter => {
+            const x = parseInt(letter.span.style.left);
+            const y = parseInt(letter.span.style.top);
+
+            letter.vx *= drag;  // apply drag to velocity
+            letter.vy *= drag;  // apply drag to velocity
+
+            letter.span.style.left = `${x + letter.vx}px`;
+            letter.span.style.top = `${y + letter.vy}px`;
+        });
+    }, 10);  // smaller interval for smoother movement
+if (cards && cards.length > 0) {
+    cards.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
+        
+        // Modify the following code to match the structure of your card data
+        cardElement.innerHTML = `
+            <h2>${card.title}</h2>
+            <p>${card.description}</p>
+            <img src="${card.imageURL}" alt="${card.title} image" />
+        `;
+        
+        cardsDiv.appendChild(cardElement);
+    });
+    } else {
+      const megaMini = document.querySelector('.noCards');
+        const imageDiv = document.createElement('div');
+        const textDiv = document.createElement('div');
+        textDiv.classList.add('textDiv')
+        textDiv.style.position = 'relative';
+        const image = document.createElement('img');
+        image.src = 'nocards.png';  // Replace with the path to your image
+        imageDiv.appendChild(image);
+        letters.forEach(letter => textDiv.appendChild(letter.span));
+        megaMini.appendChild(imageDiv);
+        megaMini.appendChild(textDiv);
+        megaMini.style.opacity = '1';
+    }
+</script>
+</body>
+</html>

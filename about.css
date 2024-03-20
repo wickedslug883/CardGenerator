@@ -1,0 +1,439 @@
+@font-face {
+    font-family: 'vila';
+    src: local('vila madelana'), url(vila\ madalena.otf) format('woff');
+}
+@font-face {
+    font-family: 'mont';
+    src: local('mont'), url(MontereyFLF.ttf) format('woff');
+}
+@font-face {
+    font-family: 'pico';
+    src: local('Pecot'), url(Pecot001.ttf) format('woff');
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
+
+	border: 1px solid black;
+	background-color: #F5F5F5;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #000000;	
+}
+
+.miniBox {
+  position: relative;
+}
+.megaBox {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.kinOne {
+    display: flex;
+    height: 30%;
+    padding-left: 5%;
+}
+.koText {
+    font-size: x-large;
+    font-weight: 500;
+    place-self: center;
+    font-variant: all-petite-caps;
+}
+.koTextMid {
+    padding: 5%;
+    padding-right: 7%;
+    font-size: x-large;
+    font-weight: 500;
+    place-self: center;
+    font-variant: all-petite-caps;
+}
+.koText::-moz-selection {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(232,197,164);
+  }
+  
+  .koText::selection {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(232,197,164);
+
+  }
+  .koTextMid::-moz-selection {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(89, 181, 199);
+  }
+  
+  .koTextMid::selection {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(89, 181, 199);
+
+  }
+  .ktwTitle::-moz-selection {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(199, 89, 89);
+  }
+  
+  .ktwTitle::selection {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(199, 89, 89);
+
+  }
+  .jello-letter::-moz-selection {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(199, 89, 89);
+  }
+  
+  .jello-letter::selection {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(199, 89, 89);
+
+  }
+  .kinTwo {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70%;
+  }
+  .ktwImageBox{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    margin: 20px auto;
+    cursor: pointer;
+}
+.ktwImage{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.box_one{
+    background-image: url("cardaboutImg3.png");
+}
+.box_two{
+    background-image: url("cardaboutImgX2.png");
+    clip-path: circle(70px at 50% 50%);
+}
+    .ktwImageTro{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    margin: 20px auto;
+    cursor: pointer;
+}
+.ktwTro{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+.tro_one{
+    background-image: url("cardaboutImg.png");
+}
+.tro_two{
+    background-image: url("cardaboutImgX.png");
+    clip-path: circle(70px at 50% 50%);
+}
+  .ktwTitle {
+ 
+
+    font-family: 'pico';
+    font-size: 4em;
+    width: max-content;
+    font-weight: lighter !important;
+    margin: 0;
+    margin-bottom: 5%;
+    position: relative;
+    left: -15%;
+  }
+  .jello-letter {
+    display: inline-block;
+  }
+  .jello-animation {
+    animation: jelly 1s ease both;
+  }
+@keyframes jelly {
+    25% {
+      transform: scale(0.9, 1.1);
+    }
+  
+    50% {
+      transform: scale(1.1, 0.9);
+    }
+  
+    75% {
+      transform: scale(0.95, 1.05);
+    }}
+  .ktwCardHolder {
+    display: flex;
+    width: 50%;
+    place-self: center ; gap: 15px;
+  }
+  .ktwCard {
+  
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 75%;
+   
+    border: 1px solid black;
+  }
+  
+  #card1 { 
+     background: url(socialwiz.png) ;
+   animation:puff-in-center .7s cubic-bezier(.47,0.000,.745,.715) both
+  }
+  #card2 { 
+    background: url(socialwiz2.png) ;
+  animation:puff-in-center .9s cubic-bezier(.47,0.000,.745,.715) both
+ }
+ #card3 { 
+    background: url(socialwiz3.png) ;
+  animation:puff-in-center 1.1s cubic-bezier(.47,0.000,.745,.715) both
+ }
+  @keyframes puff-in-center{0%{transform:scale(1.3);filter:blur(4px);opacity:0}100%{transform:scale(1);filter:blur(0);opacity:1}
+}
+
+button {
+    position: absolute;
+    top: 0;
+}
+@keyframes invertAnimation {
+    0% {
+      filter: invert(0);
+    }
+    100% {
+      filter: invert(1);
+    }
+  }
+  
+  @keyframes revertAnimation {
+    0% {
+      filter: invert(1);
+    }
+    100% {
+      filter: invert(0);
+    }
+  }
+  
+  html.inverted {
+    animation-name: invertAnimation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  
+  html.revert {
+    animation-name: revertAnimation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .circle-outline {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    perspective: 800px;
+  }
+  
+  .circle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    background-color: transparent;
+    transform: rotateY(30deg);
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, background-color 1s ease .1s;
+}
+  
+  .fa-github-alt, .fa-youtube, .fa-linkedin{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(30deg);
+   font-size: 50px;
+   color: black;
+    /* Add your icon styles here */
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, color 2s ease 2s;
+    
+  }
+  
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-family: 'vila';
+    font-weight: 900;
+  }
+  .ktwBox {
+    width: 50%;
+  }
+  .ktwCard:hover .fa-moon {
+    background: linear-gradient(to right, #bccccd, #bab9b7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; }  
+  .ktwCard:hover .fa-star {
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  }
+  
+  .ktwCard:hover .fa-heart {
+    background: linear-gradient(to right, #ff006f, #ff00ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  }
+  
+  .circle-outline:hover .circle,
+  .circle-outline:hover .fa-github-alt {
+    transform: rotateY(0deg);
+  }
+  
+  .circle-outline:hover .circle,
+  .circle-outline:hover .fa-linkedin {
+    transform: rotateY(0deg);
+  }
+  .circle-outline:hover .circle,
+  .circle-outline:hover .fa-youtube {
+    transform: rotateY(0deg);
+  }
+  
+  .circle-outline:hover .fa-github-alt {
+    top: 70%;
+    right: 10%;
+    color: rgb(216, 165, 221);
+  }
+  
+  .circle-outline:hover .fa-linkedin {
+    top: 70%;
+    right: 10%;
+    color: blue;
+  }
+  
+  .circle-outline:hover .fa-youtube {
+    top: 70%;
+    right: 10%;
+    color: rgb(165, 0, 0);
+  }
+  
+  .circle-outline:hover .text {
+    opacity: 1;
+  }
+  
+  .circle-outline:hover #circle1 {
+    background-color: rgba(6, 211, 242, 0.5);
+    background-image: linear-gradient(to top right, rgba(255, 255, 255, 0), rgba(235, 239, 0, 0.5));
+  }
+  .circle-outline:hover #circle2 {
+    background-color: rgba(255, 0, 0, 0.5);
+    background-image: linear-gradient(to top right, rgba(255, 255, 255, 0), rgba(2, 0, 142, 0.5));
+  }
+  .circle-outline:hover #circle3 {
+    background-color: rgba(241, 154, 4, 0.5);
+    background-image: linear-gradient(to top right, rgba(255, 255, 255, 0), rgba(142, 0, 0, 0.5));
+  }
+  .circle-outline:hover .text {
+    opacity: 1;
+  }
+  .numberOneA {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 50%;
+  }
+  .numberOneB {
+    place-self: flex-end;
+
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 50%;
+  }
+  .numberTwoA {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 50%;
+  }
+  .numberTwoB {
+    place-self: flex-end;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 50%;
+  }
+  .numberThreeA {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 50%;
+  }
+  .numberThreeB {
+    place-self: flex-end;
+
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+    border-radius: 50%;
+  }
+  .numberText {
+    text-align: center;
+    font-weight: 800;
+    font-family: 'mont';
+  }
+  .cardBottom {
+    width: fit-content;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    place-self: flex-end;
+  }
+  .cardTop {
+    width: fit-content;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+  }
+.fa-heart {
+    place-self: center;
+    padding: 3%;
+    font-size: 30px;
+   
+
+}
+.fa-star {
+    place-self: center;
+    padding: 3%;
+    font-size: 30px;
+    transition: transform 0.3s ease, color 2s ease 2s;
+
+}
+.fa-moon {
+    place-self: center;
+    padding: 3%;
+    font-size: 30px;
+    transition: transform 0.3s ease, color 2s ease 2s;
+
+}
